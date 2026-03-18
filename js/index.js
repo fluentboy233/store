@@ -230,10 +230,10 @@
 //订单
 (function () {
     var data = {
-        day365: { orders: '20,301,987', amount: '99834' },
-        day90: { orders: '301,987', amount: '9834' },
-        day30: { orders: '1,987', amount: '3834' },
-        day1: { orders: '987', amount: '834' }
+        data1: { orders: '20,301,987', amount: '99834' },
+        data2: { orders: '301,987', amount: '9834' },
+        data3: { orders: '1,987', amount: '3834' },
+        data4: { orders: '987', amount: '834' }
     }
     //点击事件
     $('.order').on('click', '.filter a', function () {
