@@ -93,12 +93,12 @@
         color: ['#006cff', '#60cda0', '#ed8884', '#ff9f7f', '#0096ff', '#9fe6b8', '#32c5e9', '#1d9dff']
     };
     myechart.setOption(option);
-    myechart.on('click',  function(param) {
-        alert("更多模板，关注公众号【DreamCoders】\n回复'BigDataView'即可获取\n或前往Gitee下载 https://gitee.com/iGaoWei/big-data-view")
-        setTimeout(function(){
-            location.href = "https://gitee.com/iGaoWei/big-data-view";
-        },20000);
-    });
+    // myechart.on('click',  function(param) {
+    //     alert("更多模板，关注公众号【DreamCoders】\n回复'BigDataView'即可获取\n或前往Gitee下载 https://gitee.com/iGaoWei/big-data-view")
+    //     setTimeout(function(){
+    //         location.href = "https://gitee.com/iGaoWei/big-data-view";
+    //     },20000);
+    // });
 
 })();
 // 用户
@@ -219,12 +219,12 @@
     };
     var myechart = echarts.init($('.users .bar')[0]);
     myechart.setOption(option);
-    myechart.on('click',  function(param) {
-        alert("更多模板，关注公众号【DreamCoders】\n回复'BigDataView'即可获取\n或前往Gitee下载 https://gitee.com/iGaoWei/big-data-view")
-        setTimeout(function(){
-            location.href = "https://gitee.com/iGaoWei/big-data-view";
-        },20000);
-    });
+    // myechart.on('click',  function(param) {
+    //     alert("更多模板，关注公众号【DreamCoders】\n回复'BigDataView'即可获取\n或前往Gitee下载 https://gitee.com/iGaoWei/big-data-view")
+    //     setTimeout(function(){
+    //         location.href = "https://gitee.com/iGaoWei/big-data-view";
+    //     },20000);
+    // });
 })();
 
 //订单
