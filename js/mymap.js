@@ -124,109 +124,115 @@ var geoCoordMap = {
 
 var BJData = [
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
-        name: '新乡',
+        name: '杭州',
         value: 200
     }],
     [{
-        name: '新乡'
+        name: '杭州'
+    }, {
+        name: '新乡',
+        value: 20
+    }],
+    [{
+        name: '杭州'
     }, {
         name: '呼和浩特',
         value: 90
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '哈尔滨',
         value: 90
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '石家庄',
         value: 90
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '昆明',
         value: 30
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '北京',
         value: 100
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '长春',
         value: 40
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '重庆',
         value: 40
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '贵阳',
         value: 50
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '南宁',
         value: 30
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '济南',
         value: 10
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '太原',
         value: 40
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '西安',
         value: 60
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '武汉',
         value: 50
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '合肥',
         value: 40
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '南京',
         value: 30
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '沈阳',
         value: 20
     }],
     [{
-        name: '新乡'
+        name: '杭州'
     }, {
         name: '成都',
         value: 10
@@ -238,7 +244,7 @@ var SHData = [
         name: '九江'
     }, {
         name: '九江',
-        value: 200
+        value: 90
     }],
 
     [{
@@ -297,7 +303,7 @@ var GZData = [
         name: '新疆玛纳斯基地'
     }, {
         name: '新疆玛纳斯基地',
-        value: 200
+        value: 90
     }],
     [{
         name: '新疆玛纳斯基地'

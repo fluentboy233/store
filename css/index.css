@@ -24,10 +24,59 @@ a{
     max-width: 1920px;
     min-height: 780px;
     margin: 0 auto;
-    background: url(../images/logo.png) no-repeat 0 0 / contain;
+    /* background: url(../images/logo.png) no-repeat 0 0 / contain; */
     display: flex;
     padding: 3.667rem 0.833rem 0;
 }
+/* 添加大标题样式 */
+.viewport::before {
+    content: "浙邮人力看板";
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #00f2f1 0%, #4c9bfd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 10px rgba(0, 242, 241, 0.5);
+    letter-spacing: 4px;
+    z-index: 10;
+}
+/* /* 大标题样式优化 */
+.header-title {
+    position: relative;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.header-title h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #00f2f1, #4c9bfd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(0, 242, 241, 0.3);
+    letter-spacing: 5px;
+    position: relative;
+    display: inline-block;
+}
+
+/* 添加下划线装饰 */
+.header-title h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00f2f1, #4c9bfd, transparent);
+} 
 .column{
     flex: 3;
     position: relative;
@@ -122,14 +171,14 @@ a{
 	width: 3.2rem;
   }
   .monitor .col:nth-child(2) {
-	width: 8.4rem;
+	width: 6rem;
 	/* 不换行  一行省略*/
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
   }
   .monitor .col:nth-child(3) {
-	width: 3.2rem;
+	width: 6rem;
   }
   .monitor .marquee-view{
   position: absolute;
@@ -580,6 +629,7 @@ a{
   margin-right: 5px;
   font-size: 0.833rem;
 }
+
 @media screen and (max-width: 1600px) {
   .top span {
     transform: scale(0.9);

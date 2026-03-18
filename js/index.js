@@ -230,12 +230,32 @@
 //订单
 (function () {
     var data = {
-        data1: { orders: '20,301,987', amount: '99834' },
-        data2: { orders: '301,987', amount: '9834' },
-        data3: { orders: '1,987', amount: '3834' },
-        data4: { orders: '987', amount: '834' }
+        cadre: { orders: '600', amount: '100%' },
+        turnover: { orders: '10', amount: '20' },
+        target: { orders: '1000', amount: '85%' },
+        staffing: { orders: '1800', amount: '30' }
     }
+    //新增文字
+    var textConfig = {
+        cadre:{
+            title1:'储备干部数',
+            title2:'培训覆盖率'
+        },
+        turnover:{
+            title1:'离职人数',
+            title2:'入职人数'
+        },
+        target:{
+            title1:'目标值',
+            title2:'完成率'
+        },
+        staffing:{
+            title1:'在编人数',
+            title2:'空缺编制'
+        }
+    };
     //点击事件
+    
     $('.order').on('click', '.filter a', function () {
         //点击之后加类名
         $(this).addClass('active').siblings().removeClass('active');
@@ -243,9 +263,17 @@
         var key = $(this).attr('data-key');
         //获取自定义属性
         // data{}==>data.shuxing data['shuxing]
-        key = data[key];//
-        $('.order .item h4:eq(0)').text(key.orders);
-        $('.order .item h4:eq(1)').text(key.amount);
+        var numberData = data[key];
+        var textData = textConfig[key];
+        $('.order .item h4:eq(0)').text(numberData.orders);
+        $('.order .item h4:eq(1)').text(numberData.amount);
+
+        $('.order .item:eq(0) span').html(
+            '<i class="icon-dot" style="color: #ed3f35;"></i>'+textData.title1
+        );
+        $('.order .item:eq(1) span').html(
+            '<i class="icon-dot" style="color: #eacf19;"></i>'+textData.title2
+        );
     });
     //定时器
     var index = 0;
@@ -423,34 +451,108 @@
     var myechart = echarts.init($('.gauge')[0]);
     myechart.setOption(option);
 })();
+// 员工证书板块（原排行榜）
 (function () {
-    var data = [
-        { name: '可爱多', num: '9,086' },
-        { name: '娃哈哈', num: '8,341' },
-        { name: '喜之郎', num: '7,407' },
-        { name: '八喜', num: '6,080' },
-        { name: '小洋人', num: '6,724' },
-        { name: '好多鱼', num: '2,170' },
+    // 证书数据 - 用于随机显示
+    var certificateData = [
+        { name: '项目管理师', num: '32人' },
+        { name: '高级工程师', num: '28人' },
+        { name: '注册会计师', num: '21人' },
+        { name: '一级建造师', num: '18人' },
+        { name: '人力资源管理师', num: '16人' },
+        { name: '产品经理认证', num: '15人' },
+        { name: '客户服务认证', num: '12人' },
+        { name: '数据分析师', num: '10人' },
+        { name: '网络安全专家', num: '8人' },
+        { name: '项目管理师', num: '32人' },  // 重复一些数据让列表更长
+        { name: '高级工程师', num: '28人' },
+        { name: '注册会计师', num: '21人' }
     ]
-    $('.inner').on('mouseenter', '.sup li', function () {
+    
+    // 部门数据 - 用于左侧静态显示
+    var departmentData = {
+        '技术研发部': { count: '45人', trend: 'up' },
+        '财务审计部': { count: '32人', trend: 'up' },
+        '人力资源部': { count: '28人', trend: 'down' },
+        '产品运营部': { count: '24人', trend: 'up' },
+        '市场营销部': { count: '18人', trend: 'up' },
+        '行政管理部': { count: '15人', trend: 'down' },
+        '客户服务部': { count: '12人', trend: 'up' },
+        '国际业务部': { count: '10人', trend: 'up' },
+        '培训发展部': { count: '8人', trend: 'down' },
+        '战略规划部': { count: '6人', trend: 'up' }
+    };
+    
+    // 鼠标进入事件 - 显示随机证书
+    $('.top .inner').on('mouseenter', '.sup li', function () {
+        // 当前选中的部门
+        var currentDept = $(this).find('span:first').text();
+        
         $(this).addClass('active').siblings().removeClass('active');
-        //获取随机的值  sort方法 是给数组排序 a-b是从小到大
-        //.5-随机0-1的数 可能为正可能为负 排序就会随机
-        var radomData = data.sort(function (a, b) { return 0.5 - Math.random() });
-        var html = '';
-        radomData.forEach(function (item) {
-            html += `<li><span>${item.name}</span><span>${item.num} <s class="icon-up"></s></span></li>`;
+        
+        // 随机打乱证书数据
+        var randomData = certificateData.sort(function (a, b) { 
+            return 0.5 - Math.random()
         });
-        //渲染
+        
+        // 生成HTML（显示前6个）
+        var html = '';
+        for (var i = 0; i < 6; i++) {
+            if (randomData[i]) {
+                var trend = Math.random() > 0.5 ? 'up' : 'down';
+                html += `<li>
+                    <span>${randomData[i].name}</span>
+                    <span>${randomData[i].num} <s class="icon-${trend}"></s></span>
+                </li>`;
+            }
+        }
+        
+        // 渲染到页面
         $('.sub').html(html);
     });
-    $('.province .sup li').eq(0).mouseenter();
+    
+    // 初始化：触发第一个选项
+    $('.top .sup li').eq(0).mouseenter();
+    
+    // 定时自动切换部门
     var index = 0;
-    var timer = setInterval(() => {
+    var supItems = $('.top .sup li');
+    setInterval(function () {
         index++;
-        if (index > 5) {
+        if (index >= supItems.length) {
             index = 0;
         }
-        $('.sup li').eq(index).mouseenter();
-    }, 2000);
+        supItems.eq(index).mouseenter();
+    }, 2500);  // 2.5秒切换一次
 })();
+// (function () {
+//     var data = [
+//         { name: '可爱多', num: '9,086' },
+//         { name: '娃哈哈', num: '8,341' },
+//         { name: '喜之郎', num: '7,407' },
+//         { name: '八喜', num: '6,080' },
+//         { name: '小洋人', num: '6,724' },
+//         { name: '好多鱼', num: '2,170' },
+//     ]
+//     $('.inner').on('mouseenter', '.sup li', function () {
+//         $(this).addClass('active').siblings().removeClass('active');
+//         //获取随机的值  sort方法 是给数组排序 a-b是从小到大
+//         //.5-随机0-1的数 可能为正可能为负 排序就会随机
+//         var radomData = data.sort(function (a, b) { return 0.5 - Math.random() });
+//         var html = '';
+//         radomData.forEach(function (item) {
+//             html += `<li><span>${item.name}</span><span>${item.num} <s class="icon-up"></s></span></li>`;
+//         });
+//         //渲染
+//         $('.sub').html(html);
+//     });
+//     $('.province .sup li').eq(0).mouseenter();
+//     var index = 0;
+//     var timer = setInterval(() => {
+//         index++;
+//         if (index > 5) {
+//             index = 0;
+//         }
+//         $('.sup li').eq(index).mouseenter();
+//     }, 2000);
+// })();
